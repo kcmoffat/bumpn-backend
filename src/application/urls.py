@@ -15,7 +15,22 @@ from application import views
 # See http://code.google.com/appengine/docs/python/config/appconfig.html#Warming_Requests
 
 # Create a report
-app.add_url_rule('/api/v1/reports/', view_func=views.reports, methods=['POST', 'GET'])
+app.add_url_rule('/api/v1/reports/', view_func=views.reportsv1, methods=['POST', 'GET'])
+app.add_url_rule('/api/v2/reports/', view_func=views.reportsv2, methods=['POST', 'GET'])
+
+# Create a search log
+app.add_url_rule('/api/v1/searches/', view_func=views.searches, methods=['POST'])
+app.add_url_rule('/api/v2/searches/', view_func=views.searches, methods=['POST', 'GET'])
+
+# Upload an image (return an uploadID for direct upload to Google Cloud Storage)
+app.add_url_rule('/api/v1/images/', view_func=views.images, methods=['GET'])
+app.add_url_rule('/api/v2/images/', view_func=views.images, methods=['GET'])
+
+# Create a report request
+app.add_url_rule('/api/v2/requests/', view_func=views.requestsv2, methods=['POST'])
+
+# Create a call log
+app.add_url_rule('/api/v2/calls/', view_func=views.callsv2, methods=['POST'])
 
 ## Error handlers
 # Handle 404 errors
